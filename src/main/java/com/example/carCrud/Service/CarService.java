@@ -19,25 +19,25 @@ public class CarService {
         return myCarRepository.findAll();
     }
     // getting Car by Id
-    public Car getCarById(Long Id){
-        return myCarRepository.findById(Id).orElseThrow(()-> new RuntimeException("Not found"));// here we have to kthow and exception incase the car with the id is not found
+    public Car getCarById(Long id){
+        return myCarRepository.findById(id).orElseThrow(()-> new RuntimeException("Not found"));// here we have to kthow and exception incase the car with the id is not found
     }
     // Saving th car details
     public Car saveCar(Car car){
         return myCarRepository.save(car);
     }
     // updating the car details
-    public Car updateCar(CarDto Cardto, Long Id, String description, String model, Double price, int year){
-        Car updatedCar =myCarRepository.findById(Id).orElseThrow(()-> new RuntimeException("car to be updated Not found"));
+    public Car updateCar(CarDto Cardto, Long id, String description, String model, Double price, int year){
+        Car updatedCar =myCarRepository.findById(id).orElseThrow(()-> new RuntimeException("car to be updated Not found"));
         updatedCar.setDescription(Cardto.getDescription());
         updatedCar.setModel(Cardto.getModel());
         updatedCar.setPrice(Cardto.getPrice());
         updatedCar.setYear(Cardto.getYear());
-        return updatedCar;
+        return myCarRepository.save(updatedCar);
     }
     // deleting the car
-    public void deleteCar(Long Id){
-        Car ExistingCar = myCarRepository.findById(Id).orElseThrow(()-> new RuntimeException(" car to be deleted Not found"));
+    public void deleteCar(Long id){
+        Car ExistingCar = myCarRepository.findById(id).orElseThrow(()-> new RuntimeException(" car to be deleted Not found"));
         myCarRepository.delete(ExistingCar);
     }
 // getting the car by model

@@ -14,8 +14,11 @@ public class CarController {
     private CarService carService;// we have to get the methods in order to map them
 
    @PostMapping("/car")
-    public ResponseEntity<Car> saveCar(@RequestBody Car car){
+    public ResponseEntity<?> saveCar(@RequestBody Car car){
        Car savedCar = carService.saveCar(car);
-       return new ResponseEntity<>(car, HttpStatus.CREATED);
+       return new ResponseEntity<>(savedCar, HttpStatus.CREATED);
    }
+
+   // getting a car by  its id
+//    public ResponseEntity <?>
 }

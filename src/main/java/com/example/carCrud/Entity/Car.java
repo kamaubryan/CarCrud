@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     @Column( nullable = false,name = "Car_brand")
     private String brand;
     @Column(name = "Price")
@@ -20,11 +20,11 @@ public class Car {
     private String model;
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+       this.id = id;
     }
 
     public String getBrand() {
