@@ -1,5 +1,6 @@
 package com.example.carCrud.Controller;
 
+import com.example.carCrud.DTO.CarDto;
 import com.example.carCrud.Entity.Car;
 import com.example.carCrud.Service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,15 @@ public class CarController {
     private CarService carService;// we have to get the methods in order to map them
 
    @PostMapping("/car")
-    public ResponseEntity<?> saveCar(@RequestBody Car car){
-       Car savedCar = carService.saveCar(car);
-       return new ResponseEntity<>(savedCar, HttpStatus.CREATED);
+    public ResponseEntity<?> saveCar(@RequestBody CarDto car){
+       try {
+           Car savedCar = carService.saveCar(car);
+           System.out.printf("Saved");
+           return new ResponseEntity<Car>(savedCar, HttpStatus.CREATED);
+
+       } catch (Exception e) {
+           throw new RuntimeException(e);
+       }
    }
 
    // getting a car by  its id
