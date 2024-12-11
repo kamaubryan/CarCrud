@@ -6,6 +6,7 @@ import com.example.carCrud.Repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,7 @@ public class CarService {
     @Autowired
     private CarRepository myCarRepository;
     // here we are getting all the details
-    public List<Car> findAll(){
+    public List<Car> getAllCars(){
         return myCarRepository.findAll();
     }
     // getting Car by Id
@@ -28,17 +29,22 @@ public class CarService {
         carEntity.setBrand(car.getBrand());
         carEntity.setModel(car.getModel());
         carEntity.setYear(car.getYear());
-        car.setDescription(car.getDescription());
+        carEntity.setDescription(car.getDescription());
         carEntity.setPrice(car.getPrice());
         return myCarRepository.save(carEntity);
     }
     // updating the car details
-    public Car updateCar(CarDto carDto, Long id, String description, String model, Double price, int year){
+    public Car updateCar( Long id, CarDto carDto){
+
         Car updatedCar =myCarRepository.findById(id).orElseThrow(()-> new RuntimeException("car to be updated Not found"));
-        updatedCar.setDescription(carDto.getDescription());
-        updatedCar.setModel(carDto.getModel());
+
+
+        updatedCar.setDescription(carDto.getDescription()!= null? carDto.getDescription() : updatedCar.getDescription());
+        updatedCar.setModel(carDto.getModel()!= null? carDto.getModel() : updatedCar.getModel());
+updatedCar.setBrand(carDto.getBrand()!= null? carDto.getBrand() : updatedCar.getBrand());
+updatedCar.setYear(carDto.getYear()!= null? carDto.getYear() : updatedCar.getYear());
         updatedCar.setPrice(carDto.getPrice());
-        updatedCar.setYear(carDto.getYear());
+
         return myCarRepository.save(updatedCar);
     }
     // deleting the car
@@ -55,7 +61,7 @@ public class CarService {
         return cars;
     }
     // getting the carr by year
-    public List<?> getCarByYear(int year) {
+    public List<?> getCarByYear(String year) {
         List<Car> cars = myCarRepository.findByYear(year);
         if (cars.isEmpty()) {
             throw new RuntimeException("The year specified is not found");

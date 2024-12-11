@@ -3,6 +3,8 @@ package com.example.carCrud.DTO;
 
 import jakarta.persistence.Column;
 
+import java.util.Date;
+
 public class CarDto {
     private String brand;
 
@@ -10,7 +12,7 @@ public class CarDto {
 
     private String description;
 
-    private int year;
+    private String year;
 
     private String model;
 
@@ -38,11 +40,11 @@ public class CarDto {
         this.description = description;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 

@@ -14,18 +14,26 @@ public class CarController {
     @Autowired
     private CarService carService;// we have to get the methods in order to map them
 
-   @PostMapping("/car")
-    public ResponseEntity<?> saveCar(@RequestBody CarDto car){
-       try {
-           Car savedCar = carService.saveCar(car);
-           System.out.printf("Saved");
-           return new ResponseEntity<Car>(savedCar, HttpStatus.CREATED);
+    @PostMapping("car")
+    public ResponseEntity<?> saveCar(@RequestBody CarDto car) {
+        try {
+            Car savedCar = carService.saveCar(car);
+            System.out.printf("Saved");
+            return new ResponseEntity<Car>(savedCar, HttpStatus.CREATED);
 
-       } catch (Exception e) {
-           throw new RuntimeException(e);
-       }
-   }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-   // getting a car by  its id
-//    public ResponseEntity <?>
+    @PutMapping("update")
+    public ResponseEntity<?> updateCar(@RequestParam Long id, @RequestBody CarDto car) {
+
+        return new ResponseEntity<>(carService.updateCar(id, car), HttpStatus.OK);
+
+    }
+    @GetMapping("cars")
+    public ResponseEntity<?> getAllCars() {
+        return new ResponseEntity<>(carService.getAllCars(), HttpStatus.OK);
+    }
 }

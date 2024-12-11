@@ -1,6 +1,9 @@
 package com.example.carCrud.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "Car_Inventory")
@@ -10,12 +13,13 @@ public class Car {
     private Long id;
     @Column( nullable = false,name = "Car_brand")
     private String brand;
-    @Column(name = "Price")
+    @Column(name = "Price", nullable = false)
     private double price;
     @Column(name = "Car_Description")
     private String description;
     @Column(name = "year_of_make")
-    private int year;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy")
+    private String year;
     @Column(name = "Model")
     private String model;
 
@@ -51,11 +55,11 @@ public class Car {
         this.description = description;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
