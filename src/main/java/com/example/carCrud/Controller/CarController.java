@@ -45,5 +45,24 @@ public class CarController {
         return new ResponseEntity<>(carService.updateCar(id, car), HttpStatus.OK);
 
     }
+    // getting by brand
+    @GetMapping("/brand")
+    public ResponseEntity<List<Car>> getByBrand(@RequestParam String brand,  Long id ) {
+        try {
+            List<Car> Brand = carService.getCarByBrand(brand);
+            return new ResponseEntity<>(Brand, HttpStatus.OK);
+        }
+        catch (RuntimeException e) {
+            throw new RuntimeException( "your car are not available", e);
+        }
+    }
+    // getting by model
+//    @GetMapping("/model")
+//    public ResponseEntity<List<Car>> getByModel(@RequestParam String model,  Long id ) {
+//        try {
+//            List<Car> ModelCar = carService.getCarByModel(model);
+//            return new ResponseEntity<>(ModelCar, HttpStatus.FOUND);
+//        }
+//    }
 
 }
