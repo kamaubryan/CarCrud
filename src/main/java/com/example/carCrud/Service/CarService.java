@@ -53,7 +53,7 @@ updatedCar.setYear(carDto.getYear()!= null? carDto.getYear() : updatedCar.getYea
         myCarRepository.delete(ExistingCar);
     }
 // getting the car by model
-    public List<?> getCarByModel(String model) {
+    public List<Car> getCarByModel(String model) {
         List<Car> cars = myCarRepository.findByModel(model);
         if (cars.isEmpty()) {
             throw new RuntimeException("The model specified is not found");
@@ -61,7 +61,7 @@ updatedCar.setYear(carDto.getYear()!= null? carDto.getYear() : updatedCar.getYea
         return cars;
     }
     // getting the carr by year
-    public List<?> getCarByYear(String year) {
+    public List<Car> getCarByYear(String year) {
         List<Car> cars = myCarRepository.findByYear(year);
         if (cars.isEmpty()) {
             throw new RuntimeException("The year specified is not found");
