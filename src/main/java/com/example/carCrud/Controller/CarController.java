@@ -56,13 +56,26 @@ public class CarController {
             throw new RuntimeException( "your car are not available", e);
         }
     }
-    // getting by model
-//    @GetMapping("/model")
-//    public ResponseEntity<List<Car>> getByModel(@RequestParam String model,  Long id ) {
-//        try {
-//            List<Car> ModelCar = carService.getCarByModel(model);
-//            return new ResponseEntity<>(ModelCar, HttpStatus.FOUND);
-//        }
-//    }
+//     getting by model
+    @GetMapping("/model")
+    public ResponseEntity<List<Car>> getByModel(@RequestParam String model,  Long id ) {
+        try {
+            List<Car> ModelCar = carService.getCarByModel(model);
+            return new ResponseEntity<>(ModelCar, HttpStatus.FOUND);
+        }
+        catch (RuntimeException e) {
+            throw new RuntimeException( "your car model are not available", e);
+        }
+    }
+    // getting the car by year
+    public ResponseEntity<List<Car>> getByYear(@RequestParam String year,  Long id ) {
+        try {
+            List<Car> CarYear = carService.getCarByYear(year);
+            return new ResponseEntity<>(CarYear, HttpStatus.OK);
+        }
+        catch (RuntimeException e) {
+            throw new RuntimeException( "your car year is not available", e);
+        }
+    }
 
 }
