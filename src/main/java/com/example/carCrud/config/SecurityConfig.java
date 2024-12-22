@@ -11,7 +11,6 @@
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 //import org.springframework.security.web.SecurityFilterChain;
-//
 //@Configuration
 //@EnableWebSecurity
 //public class SecurityConfig{
@@ -22,25 +21,14 @@
 //              auth->auth
 //                      .requestMatchers("/cars").hasRole("ADMIN")
 //                      .requestMatchers("/login").permitAll()
-//
-//
-//
 //      );
 //      return http.build();
-//
 //  }
-//
 //  @Bean
 //    InMemoryUserDetailsManager userDetailsManager() {
-//
-//
-//
 //     UserDetails admin = User.withDefaultPasswordEncoder().password("one").username("kamau").roles("ADMIN").build();
 //     UserDetails user= User.withDefaultPasswordEncoder().password("one").username("user").roles("USER").build();
-//
 //     return new InMemoryUserDetailsManager(user, admin);
-//
 //  }
-//
 //}
 //
