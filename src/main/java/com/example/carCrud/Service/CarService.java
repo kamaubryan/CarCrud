@@ -94,7 +94,9 @@ updatedCar.setYear(carDto.getYear()!= null? carDto.getYear() : updatedCar.getYea
     }
     // getting the car by brand
     public List<Car> getCarByBrand(String brand) {
+        System.out.println("loooking for cars"+brand);
         List<Car> cars = myCarRepository.findByBrand(brand);
+        System.out.println("found cars"+cars);
         if (cars.isEmpty()) {
             throw new RuntimeException("The brand specified is not found");
         }
