@@ -46,11 +46,11 @@ public class CarController {
 
     }
     // getting by brand
-    @GetMapping("/brand")
-    public ResponseEntity<List<Car>> getByBrand(@RequestParam String brand,  Long id ) {
+    @GetMapping("brand")
+    public ResponseEntity<List<Car>> getCarByBrand(@RequestParam String brand,     @RequestParam(required = false) Long id ) {
         try {
-            List<Car> Brand = carService.getCarByBrand(brand);
-            return new ResponseEntity<>(Brand, HttpStatus.OK);
+            List<Car> cars = carService.getCarByBrand(brand);
+            return new ResponseEntity<>(cars , HttpStatus.OK);
         }
         catch (RuntimeException e) {
             throw new RuntimeException( "your car are not available", e);
